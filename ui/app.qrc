@@ -1,0 +1,9 @@
+<RCC>
+  <qresource prefix="/">
+    <file>imgs/app_icon.png</file>
+    <file>imgs/running.png</file>
+    <file>imgs/stop.png</file>
+    <file>imgs/ready.png</file>
+    <file>imgs/error.png</file>
+  </qresource>
+</RCC>
