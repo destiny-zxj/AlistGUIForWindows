@@ -253,7 +253,7 @@ class SysTrayWidget(QWidget):
         """
         # print(self.__window.alist_bin, self.__window.status)
         if self.__window.alist_bin is not None and self.__window.status == 1:
-            util.run_cmd("{0} stop".format(self.__window.alist_bin))
+            util.run_cmd('"{0}" stop'.format(self.__window.alist_bin))
         self.__app.exit()
 
     def show_user_interface(self):
