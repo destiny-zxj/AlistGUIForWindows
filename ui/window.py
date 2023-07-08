@@ -123,6 +123,7 @@ class MainWindow(QMainWindow):
 
     def check_alist_bin(self):
         alist_bin = util.get_config(settings.CONST_CONFIG_SYSTEM, settings.CONST_CONFIG_ALIST_BIN)
+        alist_bin = os.path.abspath(alist_bin)
         if util.get_platform() == 'win32' and not alist_bin.endswith('.exe'):
             alist_bin += '.exe'
             alist_bin = alist_bin.replace('/', '\\')
@@ -130,7 +131,7 @@ class MainWindow(QMainWindow):
             self.status = -1
             WindowUtil.show_message_box(text="未找到 AList !", title="警告")
         else:
-            self.alist_bin = os.path.abspath(alist_bin)
+            self.alist_bin = alist_bin
             util.set_config(settings.CONST_CONFIG_SYSTEM, settings.CONST_CONFIG_ALIST_BIN, self.alist_bin)
             self.status = 2
         self.check_status()
