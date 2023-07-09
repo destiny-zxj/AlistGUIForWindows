@@ -84,3 +84,14 @@ def run_cmd(cmd: str) -> tuple[int, str]:
     code, stdout = subprocess.getstatusoutput(cmd)
     print(code, stdout)
     return code, stdout
+
+
+def get_work_dir():
+    """
+    获取运行文件夹
+
+    :return:
+    """
+    return os.path.dirname(os.path.dirname(__file__))
+
+

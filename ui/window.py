@@ -123,16 +123,17 @@ class MainWindow(QMainWindow):
 
     def check_alist_bin(self):
         alist_bin = util.get_config(settings.CONST_CONFIG_SYSTEM, settings.CONST_CONFIG_ALIST_BIN)
-        alist_bin = os.path.abspath(alist_bin)
-        if util.get_platform() == 'win32' and not alist_bin.endswith('.exe'):
-            alist_bin += '.exe'
+        alist_bin = os.path.join(util.get_work_dir(), alist_bin)
+        if util.get_platform() == 'win32':
+            if not alist_bin.endswith('.exe'):
+                alist_bin += '.exe'
             alist_bin = alist_bin.replace('/', '\\')
         if not os.path.exists(alist_bin):
             self.status = -1
-            WindowUtil.show_message_box(text="未找到 AList !", title="警告")
+            WindowUtil.show_message_box(text="未找到 AList !{0}".format(alist_bin), title="警告")
         else:
             self.alist_bin = alist_bin
-            util.set_config(settings.CONST_CONFIG_SYSTEM, settings.CONST_CONFIG_ALIST_BIN, self.alist_bin)
+            # util.set_config(settings.CONST_CONFIG_SYSTEM, settings.CONST_CONFIG_ALIST_BIN, self.alist_bin)
             self.status = 2
         self.check_status()
 
@@ -319,7 +320,7 @@ class WindowUtil:
         filename, _ = QFileDialog.getOpenFileName(
             parent,
             caption="选择 AList 程序",
-            dir=settings.BASE_DIR,
+            dir=util.get_work_dir(),
             filter="AList (*.exe)"
         )
         if filename is not None and filename != '':

@@ -5,6 +5,7 @@ import sys
 from ui.window import MainWindow, SysTrayWidget
 from PySide6.QtWidgets import QApplication, QMenu
 from PySide6.QtGui import QAction
+from common import util
 
 
 def init_menu_bar():
@@ -18,6 +19,7 @@ def init_menu_bar():
 
 
 def exit_app():
+    util.run_cmd('"{0}" stop'.format(window.alist_bin))
     app.exit()
 
 

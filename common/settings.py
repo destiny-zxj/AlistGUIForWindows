@@ -2,6 +2,7 @@
 
 """
 import os
+import sys
 
 
 CONST_CONFIG_SYSTEM = 'system'
@@ -22,6 +23,9 @@ CONST_STATUS_TXT_STOP = '已停止'
 CONST_ALIST_URL = 'http://127.0.0.1'
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+# if sys.platform.lower() == 'win32':
+#     BASE_DIR = os.path.join(os.environ['LOCALAPPDATA'], 'PyAList')
+
 CONFIG_DIR = os.path.join(BASE_DIR, 'config')
 CONFIG_FILE = os.path.join(CONFIG_DIR, 'config.ini')
 ALIST_DATA_DIR = os.path.join(BASE_DIR, 'data')
@@ -29,7 +33,14 @@ ALIST_DATA_DIR = os.path.join(BASE_DIR, 'data')
 
 if not os.path.exists(ALIST_DATA_DIR):
     os.makedirs(ALIST_DATA_DIR)
-
+if not os.path.exists(CONFIG_DIR):
+    os.makedirs(CONFIG_DIR)
+# if not os.path.exists(CONFIG_FILE):
+#     with open(CONFIG_FILE, mode='w+') as fpw:
+#         fpw.write("""[system]
+# alist_bin = bin\\alist.exe
+# alist_port = 5244
+# alist_data = data""")
 
 
 
